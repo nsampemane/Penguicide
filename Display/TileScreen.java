@@ -1,26 +1,36 @@
 package Display;
 
 import javax.swing.JFrame;
-import java.awt.Graphics;
-import java.awt.Color;
 import java.awt.event.*;
+import Utilities.;
 
-public class Screen extends JFrame {
-    Tile[] tiles;
-    int columns;
-    int rows;
-    int width;
+public class TileScreen extends JFrame {
+    private Tile[] tiles; //stores
+    private int columns;
+    private int rows;
+    private int width;
+    private FlatArrayTools tools;
+
 
     public static void main(String args[]) {
-        new Screen("Penguicide",10,10,8);
+        new TileScreen("Penguicide",10,10,8);
     }
 
-    public Screen(String title, int columns, int rows, int width) {
+    public TileScreen(String title, int columns, int rows, int width) {
         super(title);
         this.tiles = new Tile[columns * rows];
         this.columns = columns;
         this.rows = rows;
         this.width = width;
+        this.tools = new FlatArrayTools(columns, rows);
+
+
+        for (int index = 0; index <tiles.length;index++){
+            int column = tools.getColumnIndex(index);
+            int row = tools.getRowIndex(index);
+
+
+        }
 
 
         //Set the size for the frame.
@@ -42,12 +52,7 @@ public class Screen extends JFrame {
         );
     }
 
-    private getColumnIndex(int index){
 
-    }
-    private getRowIndex(int index){
-
-    }
 
 
    /* public void paint(Graphics g) {
