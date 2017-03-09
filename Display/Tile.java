@@ -1,28 +1,33 @@
 package Display;
 
-import javax.swing.JComponent;
+import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.*;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 
-public class Tile extends JComponent{
+public class Tile extends JPanel{
     int width;
-    Color c;
-    public Tile(int width,int x,int y,Color c) { //must be square
+
+    BufferedImage img;
+
+    public Tile(int width,int x,int y, BufferedImage img) { //must be square
         super();
-       
+
         this.width = width;
 
         setVisible(true);
-        this.c =c;
+
+        this.img = img;
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(c);
-        g.fillRect(0, 0, getWidth(), getHeight());
+
+        ((Graphics2D) g).drawImage(img,0,0,100,100,null);
+
     }
     public void set(int ID){
 

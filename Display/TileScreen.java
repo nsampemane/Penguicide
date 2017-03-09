@@ -2,8 +2,11 @@ package Display;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 //import java.awt.event.*;
 import Utilities.FlatArrayTools;
+import javax.imageio.ImageIO;
+import java.io.File;
 
 public class TileScreen extends JFrame {
     private Tile[] tiles; //stores
@@ -11,13 +14,13 @@ public class TileScreen extends JFrame {
     private int rows;
     private int width;
     private FlatArrayTools tools;
+    private SpriteSheet TileImages;
 
-
-    public static void main(String args[]) {
-        new TileScreen("Penguicide",10,10,40);
+    public static void main(String args[]) throws java.io.IOException{
+        new TileScreen("Penguicide",10,10,100);
     }
 
-    public TileScreen(String title, int columns, int rows, int width) {
+    public TileScreen(String title, int columns, int rows, int width) throws java.io.IOException {
         super(title);
         this.setLayout(new GridLayout(rows,columns));
         this.tiles = new Tile[columns * rows];
@@ -25,18 +28,19 @@ public class TileScreen extends JFrame {
         this.rows = rows;
         this.width = width;
         this.tools = new FlatArrayTools(columns, rows);
+        TileImages = new SpriteSheet("snowtest.png");
 
-       // setSize(width * columns, width * rows);
+
        for (int index = 0; index <tiles.length;index++){
            int column = tools.getIndexColumn(index);
             int row = tools.getIndexRow(index);
-                    Color c = (tools.getIndexColumn(index)%2 == 0 ^ tools.getIndexRow(index)%2 == 0 ) ? Color.black : Color.white;
-            Tile toInsert = new Tile(this.width,column * this.width, row * this.width,c);
+
+            Tile toInsert = new Tile(this.width,column * this.width, row * this.width,TileImages.getImage());
             this.tiles[index] = toInsert;
             this.add(toInsert);
 
 
-          // this.add(new JButton("test"));
+
         }
 
 
