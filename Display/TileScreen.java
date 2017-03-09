@@ -15,7 +15,7 @@ public class TileScreen extends JFrame {
 
     public static void main(String args[]) throws java.io.IOException {
 
-        TileScreen x = new TileScreen("Penguicide", 10, 10, 64);
+        TileScreen x = new TileScreen("Penguicide", 10, 10, 56);
 
     }
 
@@ -27,7 +27,7 @@ public class TileScreen extends JFrame {
         this.rows = rows;
         this.width = width;
         this.tools = new FlatArrayTools(columns, rows);
-        this.TileImages = new SpriteSheet("materials.png",columns,rows,8);
+        this.TileImages = new SpriteSheet("sprite_sheet_template.png",columns,rows,8);
 
         for (int index = 0; index < tiles.length; index++) {
             int column = tools.getIndexColumn(index);
