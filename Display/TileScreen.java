@@ -13,7 +13,7 @@ public class TileScreen extends JFrame {
     private FlatArrayTools tools;
     private SpriteSheet TileImages;
 
-    public static void main(String args[]) throws java.io.IOException, java.lang.InterruptedException {
+    public static void main(String args[]) throws java.io.IOException {
 
         TileScreen x = new TileScreen("Penguicide", 10, 10, 30);
 

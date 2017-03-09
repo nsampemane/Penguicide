@@ -30,9 +30,6 @@ public class Tile extends JPanel {
 
     }
 
-    public void set(int ID) {
-
-    }
 
     public Dimension getPreferredSize() {
         return new Dimension(this.width, this.width);
