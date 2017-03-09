@@ -7,17 +7,24 @@ import java.awt.event.*;
 
 public class Screen extends JFrame {
     Tile[] tiles;
+    int columns;
+    int rows;
+    int width;
+
     public static void main(String args[]) {
-        new Screen(10,10);
+        new Screen("Penguicide",10,10,8);
     }
 
-    public Screen(int columns, int rows) {
-        super("Penguicide");
-        tiles = new Tile[columns * rows];
+    public Screen(String title, int columns, int rows, int width) {
+        super(title);
+        this.tiles = new Tile[columns * rows];
+        this.columns = columns;
+        this.rows = rows;
+        this.width = width;
 
 
         //Set the size for the frame.
-        setSize(800, 800);
+        setSize(width * columns, width * rows);
 
         //We need to turn on the visibility of our frame
         //by setting the Visible parameter to true.
@@ -33,6 +40,13 @@ public class Screen extends JFrame {
                               }
                           }
         );
+    }
+
+    private getColumnIndex(int index){
+
+    }
+    private getRowIndex(int index){
+
     }
 
 
