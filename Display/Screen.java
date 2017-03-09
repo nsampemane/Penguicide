@@ -6,14 +6,15 @@ import java.awt.Color;
 import java.awt.event.*;
 
 public class Screen extends JFrame {
-
+    Tile[] tiles;
     public static void main(String args[]) {
-        new Screen();
+        new Screen(10,10);
     }
 
-    public Screen() {
-        //Title our frame.
-        super("Render Test");
+    public Screen(int columns, int rows) {
+        super("Penguicide");
+        tiles = new Tile[columns * rows];
+
 
         //Set the size for the frame.
         setSize(800, 800);
@@ -35,7 +36,7 @@ public class Screen extends JFrame {
     }
 
 
-    public void paint(Graphics g) {
+   /* public void paint(Graphics g) {
         for (int i = 0; i<8;i++){
             for (int j = 0; j<8;j++){
                 g.setColor(Color.red);
@@ -47,4 +48,5 @@ public class Screen extends JFrame {
 
 
     }
+    */
 }
