@@ -8,12 +8,12 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 
-public class Tile extends JPanel{
+public class Tile extends JPanel {
     int width;
 
     BufferedImage img;
 
-    public Tile(int width,int x,int y, BufferedImage img) { //must be square
+    public Tile(int width, int x, int y, BufferedImage img) { //must be square
         super();
 
         this.width = width;
@@ -26,17 +26,24 @@ public class Tile extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        ((Graphics2D) g).drawImage(img,0,0,100,100,null);
+        ((Graphics2D) g).drawImage(img, 0, 0, width, width, null);
 
     }
-    public void set(int ID){
+
+    public void set(int ID) {
 
     }
+
     public Dimension getPreferredSize() {
-        return new Dimension(this.width,this.width);
+        return new Dimension(this.width, this.width);
     }
+
     public Dimension getMaximumSize() {
         return getPreferredSize();
+    }
+
+    public void setImage(BufferedImage img) {
+        this.img = img;
     }
 
     public Dimension getMinimumSize() {
