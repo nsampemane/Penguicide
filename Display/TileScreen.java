@@ -37,7 +37,7 @@ public class TileScreen extends JFrame {
             this.add(toInsert);
         }
 
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.pack();
         this.setVisible(true);
 
