@@ -5,7 +5,7 @@ import java.io.File;
 import java.awt.image.BufferedImage;
 
 
-import Utilities.FlatArrayTools;
+import utilities.FlatArrayTools;
 
 public class SpriteSheet {
     BufferedImage largeImage;

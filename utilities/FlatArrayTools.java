@@ -1,11 +1,11 @@
-package Utilities;
+package utilities;
 
 
 public class FlatArrayTools {
     private int columns;
     private int rows;
     private static final int[][] DIRECT_DIRECTIONS = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}}; //column,row modifier format
-    private static final int[][] ALL_DIRECTIONS = {{0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, 1}}; //column,row modifier format
+    private static final int[][] ALL_DIRECTIONS = {{0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1}}; //column,row modifier format
 
     public FlatArrayTools(int columns, int rows) {
         this.columns = columns;

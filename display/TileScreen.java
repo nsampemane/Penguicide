@@ -3,7 +3,7 @@ package display;
 import javax.swing.*;
 import java.awt.*;
 //import java.awt.event.*;
-import Utilities.FlatArrayTools;
+import utilities.FlatArrayTools;
 
 public class TileScreen extends JFrame {
     private Tile[] tiles; //stores
