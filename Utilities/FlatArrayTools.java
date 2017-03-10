@@ -44,79 +44,46 @@ public class FlatArrayTools {
         return true;
     }
 
+
     public int getUpIndex(int index) {
-        if (!inRange(index)) throw new IndexOutOfBoundsException();
-        int column = getIndexColumn(index);
-        int row = getIndexRow(index) - 1;
-        if (!inRange(column, row)) throw new IndexOutOfBoundsException();
-        return getFlatIndex(column, row);
+        return getDirection(index, 0, -1);
     }
 
     public int getDownIndex(int index) {
-        if (!inRange(index)) throw new IndexOutOfBoundsException();
-        int column = getIndexColumn(index);
-        int row = getIndexRow(index) + 1;
-        if (!inRange(column, row)) throw new IndexOutOfBoundsException();
-        return getFlatIndex(column, row);
+        return getDirection(index, 0, 1);
     }
 
     public int getRightIndex(int index) {
-        if (!inRange(index)) throw new IndexOutOfBoundsException();
-        int column = getIndexColumn(index) + 1;
-        int row = getIndexRow(index);
-        if (!inRange(column, row)) throw new IndexOutOfBoundsException();
-        return getFlatIndex(column, row);
+        return getDirection(index, 1, 0);
     }
 
     public int getLeftIndex(int index) {
-        if (!inRange(index)) throw new IndexOutOfBoundsException();
-        int column = getIndexColumn(index) - 1;
-        int row = getIndexRow(index);
-        if (!inRange(column, row)) throw new IndexOutOfBoundsException();
-        return getFlatIndex(column, row);
+        return getDirection(index, -1, 0);
     }
 
     public int getUpRightIndex(int index) {
-        if (!inRange(index)) throw new IndexOutOfBoundsException();
-        int column = getIndexColumn(index) + 1;
-        int row = getIndexRow(index) - 1;
-        if (!inRange(column, row)) throw new IndexOutOfBoundsException();
-        return getFlatIndex(column, row);
+        return getDirection(index, 1, -1);
     }
 
     public int getUpLeftIndex(int index) {
-        if (!inRange(index)) throw new IndexOutOfBoundsException();
-        int column = getIndexColumn(index) - 1;
-        int row = getIndexRow(index) - 1;
-        if (!inRange(column, row)) throw new IndexOutOfBoundsException();
-        return getFlatIndex(column, row);
+        return getDirection(index, -1, -1);
     }
-
     public int getDownRightIndex(int index) {
-        if (!inRange(index)) throw new IndexOutOfBoundsException();
-        int column = getIndexColumn(index) + 1;
-        int row = getIndexRow(index) + 1;
-        if (!inRange(column, row)) throw new IndexOutOfBoundsException();
-        return getFlatIndex(column, row);
+        return getDirection(index, 1, 1);
     }
 
     public int getDownLeftIndex(int index) {
+        return getDirection(index, -1, 1);
+    }
+    private int getDirection(int index, int columnModifier, int rowModifier){
         if (!inRange(index)) throw new IndexOutOfBoundsException();
-        int column = getIndexColumn(index) - 1;
-        int row = getIndexRow(index) + 1;
+        int column = getIndexColumn(index) + columnModifier;
+        int row = getIndexRow(index) + rowModifier;
         if (!inRange(column, row)) throw new IndexOutOfBoundsException();
         return getFlatIndex(column, row);
     }
-    private int fillError(Function<Integer,Integer> direction,int index){
-        try {
-            return getUpIndex(index);
-        } catch (IndexOutOfBoundsException DNE) {
-            return -1;
-        }
-    }
 
-
-    //TODO: rewrite with function pointers
+    //TODO: rewrite with function pointers or at least less horribly
 
     private int[] getForcedDirectAdjacencies(int index) {
         int[] prearray = new int[4];
