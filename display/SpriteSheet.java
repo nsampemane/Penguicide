@@ -1,4 +1,4 @@
-package Display;
+package display;
 
 import javax.imageio.ImageIO;
 import java.io.File;

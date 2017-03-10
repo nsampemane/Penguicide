@@ -1,8 +1,7 @@
-package Display;
+package display;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 //import java.awt.event.*;
 import Utilities.FlatArrayTools;
 
@@ -23,7 +22,7 @@ public class TileScreen extends JFrame {
         this.rows = rows;
         this.width = width;
         this.tools = new FlatArrayTools(this.columns,this.rows);
-        this.materials = new SpriteSheet("materials.png",16,16,8);
+        this.materials = new SpriteSheet("resources\\materials.png",16,16,8);
 
         for (int index = 0; index < tiles.length; index++) {
             int column = tools.getIndexColumn(index);
