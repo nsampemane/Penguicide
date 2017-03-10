@@ -4,6 +4,8 @@ import java.util.function.Function;
 public class FlatArrayTools {
     private int columns;
     private int rows;
+    private static final int[][] DIRECT_DIRECTIONS = {{0,-1},{1,0},{0,1},{-1,0}}; //column,row modifier format
+    private static final int[][] ALL_DIRECTIONS = {{0,-1},{1,-1},{1,0},{1,1},{0,1},{-1,1},{-1,0},{-1,1}}; //column,row modifier format
 
     public FlatArrayTools(int columns, int rows) {
         this.columns = columns;
@@ -75,91 +77,7 @@ public class FlatArrayTools {
     public int getDownLeftIndex(int index) {
         return getDirection(index, -1, 1);
     }
-    private int getDirection(int index, int columnModifier, int rowModifier){
-        if (!inRange(index)) throw new IndexOutOfBoundsException();
-        int column = getIndexColumn(index) + columnModifier;
-        int row = getIndexRow(index) + rowModifier;
-        if (!inRange(column, row)) throw new IndexOutOfBoundsException();
-        return getFlatIndex(column, row);
-    }
 
-    //TODO: rewrite with function pointers or at least less horribly
-
-    private int[] getForcedDirectAdjacencies(int index) {
-        int[] prearray = new int[4];
-        try {
-            prearray[0] = getUpIndex(index);
-        } catch (IndexOutOfBoundsException DNE) {
-            prearray[0] = -1;
-        }
-        try {
-            prearray[1] = getRightIndex(index);
-        } catch (IndexOutOfBoundsException DNE) {
-            prearray[1] = -1;
-        }
-        try{
-            prearray[2] = getDownIndex(index);
-        }
-        catch (IndexOutOfBoundsException DNE){
-            prearray[2] = -1;
-        }
-        try{
-            prearray[3] = getLeftIndex(index);
-        }
-        catch (IndexOutOfBoundsException DNE){
-            prearray[3] = -1;
-        }
-        return prearray;
-    }
-
-    private int[] getForcedAllAdjacencies(int index) {
-        int[] prearray = new int[8];
-        try {
-            prearray[0] = getUpIndex(index);
-        } catch (IndexOutOfBoundsException DNE) {
-            prearray[0] = -1;
-        }
-        try {
-            prearray[1] = getUpRightIndex(index);
-        } catch (IndexOutOfBoundsException DNE) {
-            prearray[1] = -1;
-        }
-        try {
-            prearray[2] = getRightIndex(index);
-        } catch (IndexOutOfBoundsException DNE) {
-            prearray[2] = -1;
-        }
-        try {
-            prearray[3] = getDownRightIndex(index);
-        } catch (IndexOutOfBoundsException DNE) {
-            prearray[3] = -1;
-        }
-        try{
-            prearray[4] = getDownIndex(index);
-        }
-        catch (IndexOutOfBoundsException DNE){
-            prearray[4] = -1;
-        }
-        try{
-            prearray[5] = getDownLeftIndex(index);
-        }
-        catch (IndexOutOfBoundsException DNE){
-            prearray[5] = -1;
-        }
-        try{
-            prearray[6] = getLeftIndex(index);
-        }
-        catch (IndexOutOfBoundsException DNE){
-            prearray[6] = -1;
-        }
-        try{
-            prearray[7] = getUpLeftIndex(index);
-        }
-        catch (IndexOutOfBoundsException DNE){
-            prearray[7] = -1;
-        }
-        return prearray;
-    }
 
     public int[] getDirectAdjacencies(int index){ //get direct adjacencies without errors
        return removeErrors(getForcedDirectAdjacencies(index));
@@ -181,5 +99,43 @@ public class FlatArrayTools {
             }
         }
         return out;
+    }
+
+    private int getDirection(int index, int columnModifier, int rowModifier){
+        if (!inRange(index)) throw new IndexOutOfBoundsException();
+        int column = getIndexColumn(index) + columnModifier;
+        int row = getIndexRow(index) + rowModifier;
+        if (!inRange(column, row)) throw new IndexOutOfBoundsException();
+        return getFlatIndex(column, row);
+    }
+
+
+
+
+    private int[] getForcedDirectAdjacencies(int index) {
+        int[] preArray = new int[4];
+        for (int i = 0;i<4;i++){
+            try{
+                preArray[i] = getDirection(index,DIRECT_DIRECTIONS[i][0],DIRECT_DIRECTIONS[i][1]);
+            }
+            catch (IndexOutOfBoundsException DNE){
+                preArray[i] = -1;
+            }
+        }
+        return preArray;
+    }
+
+    private int[] getForcedAllAdjacencies(int index) {
+        int[] preArray = new int[8];
+        for (int i = 0;i<8;i++){
+            try{
+                preArray[i] = getDirection(index,ALL_DIRECTIONS[i][0],ALL_DIRECTIONS[i][1]);
+            }
+            catch (IndexOutOfBoundsException DNE){
+                preArray[i] = -1;
+            }
+        }
+        return preArray;
+
     }
 }
