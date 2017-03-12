@@ -27,7 +27,10 @@ public class Tile extends JPanel {
         super.paintComponent(g);
 
         ((Graphics2D) g).drawImage(material, 0, 0, width, width, null);
-        ((Graphics2D) g).drawImage(mob, 0, 0, width, width, null);
+        if (this.mob != null) {
+            ((Graphics2D) g).drawImage(mob, 0, 0, width, width, null);
+        }
+
 
     }
 
@@ -45,7 +48,7 @@ public class Tile extends JPanel {
 
     }
 
-    public void setMob(BufferedImage img){
+    public void setMob(BufferedImage img) {
         this.mob = img;
     }
 

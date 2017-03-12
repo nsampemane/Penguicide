@@ -22,15 +22,15 @@ public class TileScreen extends JFrame {
         this.columns = columns;
         this.rows = rows;
         this.width = width;
-        this.tools = new FlatArrayTools(this.columns,this.rows);
-        this.materials = new SpriteSheet("resources\\materials.png",16,16,8);
-        this.mobs = new SpriteSheet("resources\\mobs.png",16,16,8);
+        this.tools = new FlatArrayTools(this.columns, this.rows);
+        this.materials = new SpriteSheet("resources\\materials.png", 16, 16, 8);
+        this.mobs = new SpriteSheet("resources\\mobs.png", 16, 16, 8);
 
         for (int index = 0; index < tiles.length; index++) {
             int column = tools.getIndexColumn(index);
             int row = tools.getIndexRow(index);
-            Tile toInsert = new Tile(this.width, column * this.width, row * this.width, materials.getSprite( index));
-            toInsert.setMob(mobs.getSprite(0));
+            Tile toInsert = new Tile(this.width, column * this.width, row * this.width, materials.getSprite(0));
+
             this.tiles[index] = toInsert;
             this.add(toInsert);
         }
@@ -42,9 +42,14 @@ public class TileScreen extends JFrame {
 
     }
 
-    public void setMaterial(int tileIndex,int sheetIndex){
+    public void setMaterial(int tileIndex, int sheetIndex) {
         this.tiles[tileIndex].setMaterial(materials.getSprite(sheetIndex));
     }
+
+    public void setMob(int tileIndex, int sheetIndex) {
+        this.tiles[tileIndex].setMob(mobs.getSprite(sheetIndex));
+    }
+
 
     public void refresh() {
         this.validate();
