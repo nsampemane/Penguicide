@@ -10,20 +10,20 @@ public class CellularAutomata {
 
 
     private boolean[] grid;
-    private int neighborsToKeepLiving;
+    private int neighborsToSurvive;
     private int neighborsToBeBorn;
 
-    public CellularAutomata(int columns, int rows,int neighborsToKeepLiving, int neighborsToBeBorn,double initialProbability) {
+    public CellularAutomata(int columns, int rows, int neighborsToSurvive, int neighborsToBeBorn, double initialProbability) {
         this.columns = columns;
         this.rows = rows;
         tools = new FlatArrayTools(columns, rows);
         generator = new Random();
         grid = new boolean[columns*rows];
         for (int i = 0;i<grid.length;i++){
-            grid[i] = generator.nextDouble()>initialProbability;
+            grid[i] = generator.nextDouble()<=initialProbability;
         }
         this.neighborsToBeBorn = neighborsToBeBorn;
-        this.neighborsToKeepLiving = neighborsToKeepLiving;
+        this.neighborsToSurvive = neighborsToSurvive;
 
 
     }
@@ -36,7 +36,7 @@ public class CellularAutomata {
         boolean[] newGrid = new boolean[grid.length];
         for (int index = 0;index<grid.length;index++){
             if (grid[index]){// if cell is alive
-                    newGrid[index] = getLivingNeighbors(index) >=neighborsToKeepLiving;
+                    newGrid[index] = getLivingNeighbors(index) >= neighborsToSurvive;
             }
             else{
                 newGrid[index] = getLivingNeighbors(index) >=neighborsToBeBorn;

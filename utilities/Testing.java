@@ -9,13 +9,13 @@ import display.TileScreen;
 
 
 public class Testing {
-    private final static int COLUMNS = 20;
-    private final static int ROWS = 20;
+    private final static int COLUMNS = 10;
+    private final static int ROWS = 10;
 
     public static void main(String[] args) throws java.io.IOException, java.lang.InterruptedException{
 
-        TileScreen x = new TileScreen("Penguicide", COLUMNS, ROWS, 32);
-        CellularAutomata cells = new CellularAutomata(COLUMNS, ROWS, 4, 5, .45);
+        TileScreen x = new TileScreen("Penguicide Test", COLUMNS, ROWS, 64);
+        CellularAutomata cells = new CellularAutomata(COLUMNS, ROWS, 3, 6, .5);
         for (int z = 1; z < 10; z++) {
             for (int i = 0; i < COLUMNS * ROWS; i++) {
 
@@ -24,7 +24,8 @@ public class Testing {
             }
             x.refresh();
             cells.doCycle();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
+            x.setMob(45,1);
         }
 
     }

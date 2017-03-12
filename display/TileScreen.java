@@ -17,7 +17,7 @@ public class TileScreen extends JFrame {
 
     public TileScreen(String title, int columns, int rows, int width) throws java.io.IOException {
         super(title);
-        this.setLayout(new GridLayout(rows, columns));
+        this.setLayout(new GridLayout(rows, columns,0,0));
         this.tiles = new Tile[columns * rows];
         this.columns = columns;
         this.rows = rows;
@@ -39,6 +39,7 @@ public class TileScreen extends JFrame {
         this.pack();
         this.setVisible(true);
         this.setResizable(false);
+        this.setSize(columns*width,rows*width); //prevents setResizable(false) from adding margins
 
     }
 

@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 
+
 public class Tile extends JPanel {
     int width;
 
@@ -21,6 +22,7 @@ public class Tile extends JPanel {
         setVisible(true);
 
         this.material = material;
+
     }
 
     public void paintComponent(Graphics g) {
