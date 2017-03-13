@@ -1,11 +1,9 @@
 package utilities;
 
-import java.util.Arrays;
-
 import generation.CellularAutomata;
 
 
-import display.TileScreen;
+import display.*;
 
 
 public class Testing {
@@ -15,9 +13,9 @@ public class Testing {
 
     public static void main(String[] args) throws java.io.IOException, java.lang.InterruptedException{
 
-        TileScreen x = new TileScreen("Penguicide Test", COLUMNS, ROWS, WIDTH);
-        //2,4,.35
-        CellularAutomata cells = new CellularAutomata(COLUMNS, ROWS, 2, 4, .35);
+        TileScreen x = new SwingTileScreen("Penguicide Test", COLUMNS, ROWS, WIDTH);
+        //2,4,.25
+        CellularAutomata cells = new CellularAutomata(COLUMNS, ROWS, 2, 4, .25);
         for (int z = 1; z < 4; z++) {
             for (int i = 0; i < COLUMNS * ROWS; i++) {
 
@@ -27,7 +25,7 @@ public class Testing {
             x.refresh();
             cells.doCycle();
             Thread.sleep(200);
-            x.setMob(25,1);
+            x.setMob(400,2);
         }
 
     }
