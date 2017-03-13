@@ -2,7 +2,9 @@ package display;
 
 import javax.swing.*;
 import java.awt.*;
-//import java.awt.event.*;
+import java.awt.event.*;
+
+
 import utilities.FlatArrayTools;
 
 public class TileScreen extends JFrame {
@@ -36,10 +38,11 @@ public class TileScreen extends JFrame {
         }
 
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        this.pack();
+
         this.setVisible(true);
-        this.setResizable(false);
-        this.setSize(columns*width,rows*width); //prevents setResizable(false) from adding margins
+        //this.setResizable(false);
+        this.pack();
+        //this.setSize(columns*width,rows*width); //prevents setResizable(false) from adding margins
 
     }
 
@@ -56,5 +59,7 @@ public class TileScreen extends JFrame {
         this.validate();
         this.repaint();
     }
+
+
 
 }
